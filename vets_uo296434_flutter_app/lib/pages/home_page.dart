@@ -3,6 +3,7 @@ import 'package:vets_uo296434_flutter_app/src/user.dart';
 import 'package:vets_uo296434_flutter_app/pages/user_sigup_form.dart';
 import 'package:vets_uo296434_flutter_app/pages/custom_alert_dialog.dart';
 import 'package:vets_uo296434_flutter_app/pages/user_edit.dart';
+import 'package:vets_uo296434_flutter_app/pages/user_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   //final String _title;
@@ -55,9 +56,38 @@ class StateHomePage extends State<HomePage> {
             leading: CircleAvatar(
               child: Text(users[index].name.substring(0, 1)),
             ),
-            trailing: const Icon(
-              Icons.call,
-              color: Colors.black,
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.call,
+                  color: Colors.black,
+                ),
+                const SizedBox(width: 16.0),
+                InkWell(
+                  onTap: () {
+                    User currentUser = users[index];
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => UserDetail(user: currentUser)),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.grey[200],
+                    ),
+                    child: Text(
+                      'Detalles',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         },

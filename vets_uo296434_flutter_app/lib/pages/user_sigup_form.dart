@@ -39,6 +39,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor digite el nombre';
+                } else if (value.length < 2) {
+                  return 'El nombre debe tener al menos 2 caracteres';
+                } else if (value.length > 20) {
+                  return 'El nombre debe tener como máximo 20 caracteres';
                 }
                 return null;
               },
@@ -53,6 +57,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor digite los apellidos';
+                } else if (value.length < 2) {
+                  return 'Los apellidos deben tener al menos 2 caracteres';
+                } else if (value.length > 30) {
+                  return 'Los apellidos deben tener como máximo 30 caracteres';
                 }
                 return null;
               },
@@ -69,6 +77,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor digite el email';
+                } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  return 'Por favor digite un email válido';
                 }
                 return null;
               },
@@ -85,6 +95,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor digite el telefono ';
+                } else if (!RegExp(r'^\d{3}-\d{3}-\d{3}-\d{3}$').hasMatch(value)) {
+                  return 'Por favor digite un número de teléfono válido';
                 }
                 return null;
               },
